@@ -6,7 +6,7 @@
 # 010 Natthasith Boonheng
 # 011 Taiyo Yamamoto
 # 028 Phakaphol Dherachaisuphakij
-
+# test
 class Employee:
     def __init__(self,eid:int,name:str,salary:float): 
         self._eid = eid

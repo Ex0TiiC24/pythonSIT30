@@ -35,9 +35,14 @@ def salary(employee):
 def name(employee):
     return employee.get_name()
 
+def average(employees):
+    return 
+
 filtered_employees = filter(salary, all)
 
 print(list(filtered_employees))
 
 mapped_employees = map(name,all)
 print(list(mapped_employees))
+
+print("sad")

@@ -2,9 +2,14 @@ class UI:
     def __init__(self) -> None:
         self.BL = BL()
 
+    def loginmenu(self):
+        print("[1] login")
+        print("[2] register")
+        print("[3] exit")
 
     def mainmenu(self):
         while True:
+            print(f"   You're login as ID:{self.BL.getcurrentid()} with {self.BL.getcurrentuser(self.BL.getcurrentid())}")
             print("[1] all course")
             print("[2] my course")
             print("[3] logout")
@@ -15,14 +20,17 @@ class UI:
                 case 2:
                     print("Awd")
                 case 3:
-                    print("ADW")
+                    self.BL.logout()
+                    print("Logging out")
+                    print(f"Current user data {self.BL._user_data}")
+                    self.regis()
 
     def login(self):
         while True:
             print("Enter ID: ")
             try:
                 sid = int(input())
-            except:
+            except ValueError:
                 print("Please enter valid ID")
                 continue
             if self.BL.checklogin(sid) == True:
@@ -55,19 +63,26 @@ class BL:
         self._loginid = ''
     def loginstate(self,sid):
         self._loginid = sid
+    def getcurrentid(self):
+        return self._loginid
+    def getcurrentuser(self,sid):
+        return self._user_data[str(sid)]
     def checkdupid(self, sid):
         try:
             value = self._user_data[sid]
             return False
         except KeyError:
             return True
-    def checklogin(self,sid):
-        if sid in self._user_data.keys():
+        
+    def checklogin(self,sid)->bool:
+        if str(sid) in self._user_data:
             return True
         return False
+    
     def adduser(self, sid, name):
         self._user_data[sid] = name
-
+    def logout(self):
+        self._loginid = ''
 
 # Main program
 ui = UI()

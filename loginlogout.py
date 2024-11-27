@@ -39,7 +39,7 @@ class UI:
                     print("Add friend")
                     self.addfriendui()
                 case 2:
-                    
+                    print("none")
                 case 3:
                     self.BL.logout()
                     print("Logging out")

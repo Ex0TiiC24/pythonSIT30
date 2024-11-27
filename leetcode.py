@@ -55,4 +55,99 @@ def no3():
     work = hrminute//timeofwork
     print(work)
 
-no3()
+def prime():
+    num = int(input("Check is this number prime? "))
+    if num==1 or num==0:
+        print("prime")
+        return
+    state = True
+    for i in range(2,num):
+        
+        if num%i==0:
+            state=False
+            break
+        else:
+            state=True
+            
+    if state==True:
+        print("Prime")
+    if state==False:
+        print("not prime")
+
+
+def allprime():
+    n = int(input())
+    if n>=2:
+        print(2)
+    for i in range(n):
+        for k in range(2,i):
+            if i%k ==0:
+                break
+            else:
+                print(i)
+                break
+        
+
+                
+
+        
+
+
+
+def mae():
+    
+    
+   
+    
+    maxx = 12
+    for mae in range(2,25):
+        i=1
+        k=1
+        num=0
+            
+        print("mae",mae)
+        while i<=maxx:
+            
+            while k <= i:
+                num=num+mae
+                
+                print(f"{mae} * {k} = ",num)
+                k+=1
+            i+=1
+    
+
+def yok():
+    i=1
+    k=1
+    num=1
+    a= int(input("A"))
+    b= int(input("B"))
+    
+    
+    while k <=  b:
+        num=a*num
+        print(f"{a} power of {k} is ",num)
+        k+=1
+
+def log():
+    count=0
+    a= int(input("log: "))
+    b = int(input("base: "))
+    
+    
+    while a>1:
+        a = a/b
+        count+=1
+    print(count)
+
+
+
+
+def fib(n):
+    if n==0:
+        return 0
+    if n==1:
+        return 1
+    return fib(n-2)+fib(n-1)
+    
+log()

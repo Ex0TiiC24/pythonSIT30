@@ -1,3 +1,12 @@
+class User:
+    def __init__(self,sid,name) -> None:
+        self._sid = sid
+        self._name = name
+        self.request = []
+    def __str__(self):
+        return f"User[ID: {self.sid}, Name: {self.username}]"
+    
+    
 class UI:
     def __init__(self) -> None:
         self.BL = BL()
@@ -7,6 +16,7 @@ class UI:
         print("[2] register")
         print("[3] exit")
         choice = int(input())
+
         match choice:
             case 1:
                 self.login()
@@ -17,21 +27,29 @@ class UI:
             
     def mainmenu(self):
         while True:
+            
+            
             print(f"   You're login as ID:{self.BL.getcurrentid()} with {self.BL.getcurrentuser(self.BL.getcurrentid())}")
-            print("[1] all course")
-            print("[2] my course")
+            print("[1] Friend")
+            print("[2] Add friend")
             print("[3] logout")
             choice = int(input())
             match choice:
                 case 1:
-                    print("allcouse")
+                    print("Add friend")
+                    self.addfriendui()
                 case 2:
-                    print("Awd")
+                    
                 case 3:
                     self.BL.logout()
                     print("Logging out")
                     print(f"Current user data {self.BL._user_data}")
                     self.loginmenu()
+                
+
+    def addfriendui(self):
+        user = input("Enter friend name to be added: ")
+        self.BL.addfriend(user)
 
     def login(self):
         while True:
@@ -70,7 +88,8 @@ class UI:
             
 
             if self.BL.checkdupid(sid):
-                self.BL.adduser(sid, user)
+                lol = User(sid,user)
+                self.BL.adduser(lol._sid,lol._name)
                 print(f"User '{user}' with ID '{sid}' has been successfully registered!\n")
                 self.loginmenu()
             else:
@@ -81,8 +100,8 @@ class UI:
 class BL:
     def __init__(self) -> None:
         self._user_data = {}
-    
         self._loginid = ''
+
     def loginstate(self,sid):
         self._loginid = sid
 
@@ -98,12 +117,25 @@ class BL:
             return False
         except KeyError:
             return True
-        
+
+    def finduser(self,checker):
+        if checker in self._user_data.values():
+            print(list(self._user_data.values()).index(checker))
+            return True
+        else:
+            return False
+    
     def checklogin(self,sid:str)->bool:
         return str(sid) in self._user_data
     
     def adduser(self, sid, name):
         self._user_data[str(sid)] = name
+
+    def addfriend(self,user):
+        if self.finduser(user):
+            print("Friend Added")
+        else:
+            print("This user doesn't exists on the platform")
     def logout(self):
         self._loginid = ''
 

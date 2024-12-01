@@ -11,6 +11,8 @@ def f2(oppo:float,adjus:float):
 
 print(f2(3,4))
 
+
+
 def f3(num:list):
     num = sorted(num)
     secsmall = num[1]
@@ -27,16 +29,11 @@ print(f3([20,30,10,19,20]))
 # minimum
 
 
-
-
 def f4(num:list,check):
     count = 0
     for i in range(len(num)):
         if check(num[i])==True:
             count+=1
     return count
-
-
-
 
 print(f4([20,3,21,10,10,10],lambda x : x==10))

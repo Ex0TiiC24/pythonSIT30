@@ -26,7 +26,6 @@ def no2(): #2.5%
     balance = money
     interest = 0.025
     year = 1
-
     while year<=10:
         currentinterest = balance*interest
         balance += currentinterest
@@ -38,12 +37,9 @@ def no2(): #2.5%
 def no3():
     starthr = int(input())
     startmn = int(input())
-
     endhr = int(input())
     endmn = int(input())
-
     hrminute = (endhr-starthr)*60 + endmn-startmn
-
     print(hrminute)
     timeofwork = 45
 
@@ -95,10 +91,6 @@ def allprime():
 
 
 def mae():
-    
-    
-   
-    
     maxx = 12
     for mae in range(2,25):
         i=1
@@ -110,7 +102,6 @@ def mae():
             
             while k <= i:
                 num=num+mae
-                
                 print(f"{mae} * {k} = ",num)
                 k+=1
             i+=1

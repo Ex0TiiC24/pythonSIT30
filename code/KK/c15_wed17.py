@@ -37,3 +37,4 @@ def f4(num:list,check):
     return count
 
 print(f4([20,3,21,10,10,10],lambda x : x==10))
+

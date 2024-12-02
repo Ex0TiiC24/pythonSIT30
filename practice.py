@@ -39,9 +39,20 @@ def palindrome(kum:str):
 def func(num:list):
     return functools.reduce(lambda x,y: x+y,num)
 
-def hello()->any:
-    return "hello"
 
 
+def tonmai(n):
+    for floor in range(n):
+        for i in range(floor,0,-1):
+            
+            for k in range(i):
+                print("_",end=" ")
+            for j in range(floor-k):
+                print("h",end =" ")
+            for m in range(floor-k-1):
+                print("a",end=" ")
+            print("\n")
 
-print(func([2,3,4,5]))
+        
+
+tonmai(4)

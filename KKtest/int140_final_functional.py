@@ -17,8 +17,8 @@ func01([3, -2, 7, 0, 12, 6, -9]) -> 4
 """
 # from functools import reduce
 def func01(ls:list) -> int:
-    return reduce(lambda count, _: count + 1,
-                  filter(lambda element: element % 2 == 0, ls), 0)
+   return len(list(filter(lambda x : x%2==0,ls)))
+
 
 """ ===============================================================
 Problem_02: Write a function 'func02' that receives a list of values 
@@ -37,8 +37,9 @@ func02([6, -12.5, 71, 4, 10], 9.9) -> 3
 """
 # from functools import reduce
 def func02(ls:list, value) -> int:
-    return reduce(lambda count, _: count + 1,
-                  filter(lambda element: element < value, ls), 0)
+    #return len(list(filter(lambda x: x<value ,ls)))
+    return reduce(lambda c,_: c+1,filter(lambda x : x<value,ls),0)
+
 
 """ ===============================================================
 Problem_03: Write a function 'func03' that receives an integer
@@ -52,7 +53,8 @@ func03(4) -> [0, 1, 2, 3, 4]
 func03(-3) -> [0, -1, -2, -3]
 """
 def func03(num: int) -> list[int]:
-    return [0] if num == 0 else func03(num + (1 if num<0 else -1)) + [num]
+    return [0] if num==0 else func03(num-1)+[num] if num>0 else func03(num+1)+[num]
+
 
 """ ===============================================================
 Problem_04: Write a function 'func04' that receives a list of strings
@@ -64,8 +66,8 @@ func04(['one', 'two', 'three', 'four', 'five']) -> 19
 """
 # from functools import reduce
 def func04(ls: list[str]) -> int:
-    return reduce(lambda a, i: a + i,
-                  map(len,ls), 0)
+    return reduce(lambda x,y :x+y,map(lambda x :  len(x),ls),0)
+
 
 """ ===============================================================
 Problem_05: Write a function 'func05' that receives a list of strings
@@ -78,8 +80,9 @@ func05(['Strength', 'Weakness', 'Opportunity', 'Threat']) -> 'SWOT'
 """
 # from functools import reduce
 def func05(ls: list[str]) -> str:
-    return reduce(lambda a, i: a + i,
-                  map(lambda s: s[0] if len(s) > 0 else '', ls), '')
+    return reduce(lambda x,y: x+y,map(lambda x: x[0],filter(lambda x: len(x)>0,ls)),'')
+
+
 
 """ ===============================================================
 Problem_06: Write a function 'func06' that receives a list containing values.
@@ -96,19 +99,16 @@ it returns 0.  This function does not validate its parameter.
 Write this function in recursive style.
 """
 def func06(ls: list, smallest=None, count=0):
-    if len(ls) == 0:
+    if ls == []:
         return count
-    head = ls[0]
-    tail = ls[1:]
-    if smallest is None or head < smallest:     # if the head is the new smallest value
-        return func06(tail, head, 1)      #     recursively call itself
-                                                #     with the tail, the new smallest value, and start counting
-    if head == smallest:                        # elif the head equals to the old smallest value
-        return func06(tail, smallest, count+1)  #     recursively call itself
-                                                #     with the tail, the old smallest value, and continue counting
-    return func06(tail, smallest, count)        # otherwise (the head is not the smallest value)
-                                                #     recursively call itself
-                                                #     with the tail, the old smallest value, and the old count
+    current = ls[0]
+    if (smallest==None) or current < smallest:
+        smallest = current
+        count =1
+    elif current == smallest:
+        count+=1
+    return func06(ls[1:],smallest,count)
+
 
 """ ===============================================================
 Problem_07: Write a function 'func07' that receives a list containing values 
@@ -122,14 +122,15 @@ func07([6, 7, 8, 5, 4, 2, 9, 6, 3], lambda i: i % 2 == 0) -> 5
 """
 from typing import Callable,Any
 def func07(ls: list, f:Callable[[Any],bool]) -> int:
-    return sum(map(lambda v: f(v), ls))
+
+    return reduce(lambda c,_: c+1,filter(lambda x: f(x),ls),0)
 
 # solution in imperative style --------------------
 def func07im(ls: list, f:Callable[[Any],bool]) -> int:
     count = 0
-    for v in ls:
-        if f(v):
-            count += 1
+    for i in range(len(ls)):
+        if f(ls[i]):
+            count+=1
     return count
 
 """ ===============================================================
@@ -149,13 +150,5 @@ func08(['b', 'a']) -> 'b'
 func08([300, -11, -20, -11, 300, -20, 50000, 300, 4000]) -> -11
 """
 def func08(ls: list[Any]) -> Any|None:
-    def f(v, smallest=None, second=None):  # define a recursive function
-        if len(v) == 0:                           # if no more element in the list to process
-            return second                         #    return the second-smallest
-        if smallest is None or v[0] < smallest:   # if the head of the list is the new smallest
-            return f(v[1:], v[0], smallest)       #    process the rest of list with the new smallest
-        if smallest < v[0] and (second is None or v[0] < second):
-                                                  # elif the head of the list is the new second-smallest
-            return f(v[1:], smallest, v[0])       #    process the rest of the list with the new second-smallest
-        return f(v[1:], smallest, second)         # else process the rest of the list with the old small values
-    return f(ls)
+    if (ls == []) or ():
+        return None

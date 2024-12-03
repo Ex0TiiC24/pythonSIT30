@@ -25,7 +25,7 @@ func02('lie', 'believe') -> True
 """
 # def func02(str1: str, str2: str) -> bool:  ## with type hint
 def func02(str1, str2):  ## without type hint
-    pass
+    return str1 in str2
 
 """ ===============================================================
 Problem_03: Write a function 'func03' that receives two numbers
@@ -41,7 +41,12 @@ func03(-3.0, 4) -> ValueError
 """
 # def func03(side1:int|float, side2:int|float) -> float:  ## with type hint
 def func03(side1, side2):  ## without type hint
-    pass
+    if side1 <=0 or side2 <=0:
+        raise ValueError
+    
+     
+    return (side1**2+side2**2)**0.5
+
 
 """ ===============================================================
 Problem_04: Write a function 'func04' that receives a list of integers.
@@ -54,10 +59,13 @@ func04([3, -2, 7, 0, 12, 6, -9]) -> 4
 """
 # def func04(ls: list[int]) -> int:  ## with type hint
 def func04(ls):  ## without type hint
-    pass
+    return len(list(filter(lambda x: x%2==0,ls)))
+
+
 
 """ ===============================================================
 Problem_05: Write a function 'func05' that receives a list of values 
+
 (the first parameter) and a value (the second parameter).
 This function counts the number of values in the list (the first parameter) 
 that is less than the value (the second parameter).
@@ -72,7 +80,7 @@ func05([6, -12.5, 71, 4, 10], 9.9) -> 3
 """
 # def func05(ls: list, value) -> int:  ## with type hint
 def func05(ls, value):  ## without type hint
-    pass
+    return len(list(filter(lambda x : x < value,ls)))
 
 """ ===============================================================
 Problem_06: Write a function 'func06' that receives an integer
@@ -87,7 +95,17 @@ func06(-3) -> [0, -1, -2, -3]
 """
 # def func06(num: int) -> list[int]:  ## with type hint
 def func06(num):  ## without type hint
-    pass
+    list = []
+    if num <0:
+        for i in range(0,num-1,-1):
+            list.append(i)
+    else:
+        for i in range(num+1):
+            list.append(i)
+
+    return list
+
+
 
 """ ===============================================================
 Problem_07: Write a function 'func07' that receives a list of strings
@@ -97,8 +115,10 @@ e.g.,
 func07(['one', 'two', 'three', 'four', 'five']) -> 19
 """
 # def func07(ls: list[str]) -> int:  ## with type hint
-def func07(ls):  ## without type hint
-    pass
+def func07(ls):  ## without type hintc
+    return 0 if len(ls)==0 else reduce(lambda x,y : x+y,map(lambda x: len(x),ls))
+
+print(func07(['one', 'two', 'three', 'four','', 'five']))
 
 """ ===============================================================
 Problem_08: Write a function 'func08' that receives a list of strings
@@ -108,10 +128,12 @@ This function does not validate its parameter.
 e.g., 
 func08(['Strength', 'Weakness', 'Opportunity', 'Threat']) -> 'SWOT'
 """
-# def func08(ls: list[str]) -> str:  ## with type hint
+# def func08(ls: list[str]) -> str:  ## with type hint 
 def func08(ls):  ## without type hint
-    pass
+    
+    return ''.join(map(lambda x: x[0],filter(lambda s: len(s)>0,ls)))
 
+print(func08(['', 'Weakness', 'Opportunity', 'Threat']))
 """ ===============================================================
 Problem_09: Write a function 'func09' that receives a list containing values.
 The values may be int, float, str, or any type that can be compare with < and ==. 
@@ -126,7 +148,23 @@ If the list is an empty list (containing no values), then there is no smallest v
 it returns 0.  This function does not validate its parameter.
 """
 def func09(ls):  ## without type hint
-    pass
+    
+    if len(ls)==0:
+        return 0
+    
+    min = ls[0]
+    count =0
+    for i in ls:
+        if i<min :
+            min = i
+    for i in ls:
+        if i == min:
+            count+=1
+    return count
+
+print(func09([5, -3, 7, 6, -3, 5, -1, 5]))
+        
+
 
 """ ===============================================================
 Problem_10: Write a function 'func11' that receives a list containing values 
@@ -144,4 +182,18 @@ func10(['b', 'a']) -> 'b'
 func10([300, -11, -20, -11, 300, -20, 50000, 300, 4000]) -> -11
 """
 def func10(ls):  ## without type hint
-    pass
+    if len(ls) < 2:
+        return None
+    small = ls[0]
+    second = None
+    for i in ls:
+        if i < small:
+            second = small
+            small = i
+        elif (small < i) and (second is None or i < second):
+            second = i
+    if second == small:
+        return None
+    return second
+print(func10(['b', 'a']))
+    

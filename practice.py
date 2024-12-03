@@ -53,6 +53,3 @@ def tonmai(n):
                 print("a",end=" ")
             print("\n")
 
-        
-
-tonmai(4)

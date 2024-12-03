@@ -157,6 +157,7 @@ def func08(ls: list[Any]) -> Any|None:
         current = ls[0]
 
         if smallest is None or current < smallest:
+            #ini smallest or check ls[0] < smallest
             return findsec(ls[1:],current,smallest)
         elif smallest < current and (secondsmall is None or current < secondsmall):
             # smallest < current -> smallest is less than current ls[0]

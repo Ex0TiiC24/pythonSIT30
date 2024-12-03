@@ -150,5 +150,20 @@ func08(['b', 'a']) -> 'b'
 func08([300, -11, -20, -11, 300, -20, 50000, 300, 4000]) -> -11
 """
 def func08(ls: list[Any]) -> Any|None:
-    if (ls == []) or ():
-        return None
+     
+    def findsec(ls,smallest=None,secondsmall=None):
+        if len(ls)==0:
+            return secondsmall
+        current = ls[0]
+
+        if smallest is None or current < smallest:
+            return findsec(ls[1:],current,smallest)
+        elif smallest < current and (secondsmall is None or current < secondsmall):
+            # smallest < current -> smallest is less than current ls[0]
+            # second is none or current < second  and second is still none or current < ls[0] -> setting second or changing second
+            return findsec(ls[1:],smallest,current)
+        return findsec(ls[1:],smallest,secondsmall)
+
+    return findsec(ls)
+
+print(func08([300, -11, -20, -11, 300, -20, 50000, 300, 4000]))

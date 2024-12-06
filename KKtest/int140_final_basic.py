@@ -46,7 +46,7 @@ def func03(side1, side2):  ## without type hint
     
      
     return (side1**2+side2**2)**0.5
-
+    
 
 """ ===============================================================
 Problem_04: Write a function 'func04' that receives a list of integers.

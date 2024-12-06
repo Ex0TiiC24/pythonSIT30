@@ -62,7 +62,7 @@ def func05(ls: list[int]) -> int:
 # Example usage:
 # func06(['one', 'two', 'three', 'four', 'five'])  # Output: ['one', 'two', 'three', 'four', 'five']
 # func06(['a', 'abc', 'ab', 'abcd'])                 # Output: ['a', 'ab', 'abc', 'abcd']
-def func06(ls: list[str]) -> list[str]:
+def func06(ls:list[str]) -> list[str]:
     return sorted(ls,key=len)
 
 
@@ -76,4 +76,3 @@ def func06(ls: list[str]) -> list[str]:
 # func07(['a', 'b', 'c'], lambda s: s == 'a')                         # Output: 1
 def func07(ls: list[str], f: Callable[[str], bool]) -> int:
     return reduce(lambda x,y:x+y,map(lambda x: f(x),ls),0)
-print(func07(['one', 'two', 'three', 'four'], lambda s: 'o' in s))

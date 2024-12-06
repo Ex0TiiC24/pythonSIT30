@@ -53,7 +53,7 @@ def walk(num):
     print("step-",num)
     
 
-walk(100)
+
 
 #extra factorial 
 
@@ -72,7 +72,7 @@ def factorial(lst)->int: # xn = xn*xn-1
 # count_evens([2, 4, 6, 8])         # Output: 4 (All numbers are even)
 
 def count_evens(lst):
-    pass
+    return reduce(lambda c,_:c+1,filter(lambda x: x%2==0,lst),0)
 
 
 # Problem 5: Recursive Count of Occurrences of an Element in a List
@@ -85,7 +85,11 @@ def count_evens(lst):
 # count_occurrences([], 10)              # Output: 0
 
 def count_occurrences(lst, element):
-    pass
+    if lst == []:
+        return 0
+    if lst[0]==element:
+        return 1+count_occurrences(lst[1:],element)
+    return 0+count_occurrences(lst[1:],element)
 
 
 # Problem 6: Functional Filtering of Odd Numbers
@@ -98,7 +102,8 @@ def count_occurrences(lst, element):
 # filter_odds([2, 4, 6])        # Output: []
 
 def filter_odds(lst):
-    pass
+    return list(filter(lambda x: x%2!=0,lst))
+
 
 
 # Problem 7: Recursive Fibonacci Series
@@ -111,7 +116,12 @@ def filter_odds(lst):
 # fibonacci(10) # Output: 55
 
 def fibonacci(n):
-    pass
+    if n ==0:
+        return 0
+    elif n==1:
+        return 1
+    
+    return fibonacci(n-1)+fibonacci(n-2)
 
 
 # Problem 8: Functional Sum of Squares of Even Numbers
@@ -123,8 +133,10 @@ def fibonacci(n):
 # sum_of_squares_of_evens([1, 3, 5, 7])         # Output: 0
 # sum_of_squares_of_evens([2, 4, 6, 8])         # Output: 120 (2^2 + 4^2 + 6^2 + 8^2)
 
+
 def sum_of_squares_of_evens(lst):
-    pass
+    return reduce(lambda x,y:x+y,map(lambda x:x**2,filter(lambda x: x%2==0,lst)),0)
+
 
 
 # Problem 9: Recursive Flattening of a Nested List
@@ -150,4 +162,5 @@ def recursive_flatten(lst):
 # product_of_positives([10, -1, 5, -2]) # Output: 50 (10*5)
 
 def product_of_positives(lst):
-    pass
+    return reduce(lambda x,y:x*y,filter(lambda x: x>0,lst),1)
+print(product_of_positives([0, 1, 2, 3]))

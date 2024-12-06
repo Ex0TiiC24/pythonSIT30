@@ -53,7 +53,7 @@ class TestRecursiveFunctionalProblems(unittest.TestCase):
     # Test case for Problem 8
     def test_sum_of_squares_of_evens(self):
         self.assertEqual(sum_of_squares_of_evens([1, 2, 3, 4, 5]), 20)
-        self.assertEqual(sum_of_squares_of_evens([10, 20, 30, 40]), 4000)
+        self.assertEqual(sum_of_squares_of_evens([10, 20, 30, 40]), 3000)
         self.assertEqual(sum_of_squares_of_evens([1, 3, 5, 7]), 0)
         self.assertEqual(sum_of_squares_of_evens([2, 4, 6, 8]), 120)
 

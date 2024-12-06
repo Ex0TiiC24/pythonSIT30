@@ -149,6 +149,9 @@ func08(['a', 'b']) -> 'b'
 func08(['b', 'a']) -> 'b'
 func08([300, -11, -20, -11, 300, -20, 50000, 300, 4000]) -> -11
 """
+
+
+
 def func08(ls: list[Any]) -> Any|None:
      
     def findsec(ls,smallest=None,secondsmall=None):

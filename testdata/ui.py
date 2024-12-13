@@ -71,7 +71,8 @@ class UI:
         print(f"  [1] Discrete [Enrolled ({len(courses["Discrete"])}/5) ]")
         print(f"  [2] Ux-Ui [Enrolled ({len(courses["Ux-Ui"])}/5) ]")
         print(f"  [3] Design Thinking [Enrolled ({len(courses["DesignThinking"])}/5) ]")
-        print(f"  [4] Exit")
+        print(f"  [4] Computational Thinking [Enrolled ({len(courses["Computational-Thinking"])}/5) ]")
+        print(f"  [5] Exit")
         choice = input("Choose one [1|2|3|4]: ")
         try:
             match int(choice):
@@ -85,7 +86,11 @@ class UI:
                     print("You chose Design Thinking!")
                     self.bl.enroll("DesignThinking", self.bl.get_currentid())
                 case 4:
-                    return
+                    print("You chose Computational Thinking!")
+                    self.bl.enroll("Computational-Thinking", self.bl.get_currentid())
+                case 5:
+                    print("Exiting..")
+                    self.mainmenu()
                 case _:
                     print("Invalid choice!")
         except ValueError:

@@ -11,7 +11,6 @@ class BL:
         self.currentid = user_id
 
     def enroll_limit(self,course):
-
         return len(self.course_data[course]) >= 5
 
     def get_currentid(self):
@@ -25,7 +24,7 @@ class BL:
             raise Exception
         if self.duplicate_enroll_corse(course,user_id):
             raise TypeError
-        self.course_data[course].append(user_id)
+        self.course_data[course].append(user_id) 
         print(self.course_data)
     
     def duplicate_enroll_corse(self,course, id_user):

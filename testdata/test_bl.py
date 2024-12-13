@@ -44,20 +44,21 @@ class TestBL(unittest.TestCase):
 
     def test_enroll_success(self):
         """Test successful course enrollment."""
-        self.bl.enroll("Discrete", 67130500001)
-        self.assertIn(67130500001, self.bl.get_course_data()["Discrete"])
+        self.bl.enroll("DesignThinking", 67130500001)
+        self.assertIn(67130500001, self.bl.get_course_data()["DesignThinking"])
+        
 
     def test_enroll_duplicate(self):
         """Test duplicate course enrollment."""
-        self.bl.enroll("Discrete", 67130500001)
+        self.bl.enroll("Ux-Ui", 67130500001)
         with self.assertRaises(TypeError):
-            self.bl.enroll("Discrete", 67130500001)
+            self.bl.enroll("Ux-Ui", 67130500001)
 
     def test_filter_mycourse(self):
         """Test filtering courses for a specific user."""
-        self.bl.enroll("Discrete", 67130500001)
-        self.bl.enroll("Ux-Ui", 67130500001)
-        my_courses = self.bl.filter_mycourse(67130500001)
+        self.bl.enroll("Discrete", 67130500010)
+        self.bl.enroll("Ux-Ui", 67130500010)
+        my_courses = self.bl.filter_mycourse(67130500010)
         self.assertListEqual(my_courses, ["Discrete", "Ux-Ui"])
 
     def test_checkid_valid(self):
@@ -77,7 +78,6 @@ class TestBL(unittest.TestCase):
         """Test invalid username."""
         with self.assertRaises(ValueError):
             self.bl.checkname("12345")
-
     def test_duplicate_enroll_course(self):
         """Test checking for duplicate enrollment."""
         self.bl.enroll("Discrete", 67130500001)
@@ -85,7 +85,8 @@ class TestBL(unittest.TestCase):
         self.assertTrue(result)
 
     def test_enroll_limit(self):
-        self.assertEqual(self.bl.enroll_limit("Discrete"),True)
+        self.assertEqual(self.bl.enroll_limit("Computational-Thinking"),True)
+    
 
 
 class TestUser(unittest.TestCase):

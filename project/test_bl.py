@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
-from bl import BL
-from user import User
+from BL.bl import BL
+from BL.user import User
 
 class TestBL(unittest.TestCase):
     def setUp(self):
@@ -9,6 +9,7 @@ class TestBL(unittest.TestCase):
         self.bl = BL()
         self.user = User(67130500001, "Test User")
         self.bl.register_user(self.user)
+        
 
     def test_register_user_success(self):
         """Test successful user registration."""

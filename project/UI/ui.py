@@ -111,7 +111,7 @@ class UI:
 
     def register_user(self):
         try:
-            from user import User
+            from BL.user import User
             user_id = int(input("Enter a new user ID: "))
             self.bl.checkid(user_id)
             user_name = input("Enter your name: ")

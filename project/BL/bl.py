@@ -1,5 +1,5 @@
 
-from data import Coursedata
+from data.data import Coursedata
 
 class BL:
     def __init__(self):

@@ -1,5 +1,5 @@
-from bl import BL
-from ui import UI
+from BL.bl import BL
+from UI.ui import UI
 
 def main():
     bl_instance = BL()
@@ -8,5 +8,4 @@ def main():
 
 
 
-if __name__ == "__main__":
-    main()
+
